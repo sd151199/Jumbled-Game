@@ -1,0 +1,110 @@
+import tkinter
+from tkinter import *
+import random
+from tkinter import messagebox
+
+
+answers= [
+        "PYTHON",
+        "AUTONOMOUS",
+        "ROBOTICS",
+        "MEGA-ARCH",
+        "WEBPAGE",
+        "CERTIFICATE",
+        "PYCHARM",
+        "SETU-BANDHAN",
+        "CHATAPP",
+       
+]
+words= [        
+        "YTHPNO",
+        "TONOAUMSOU",
+        "OBTORICS",
+        "ARHC-AEGM",
+        "PGAEEWB",
+        "ETAICFITERC",
+        "HARMPYC",
+        "BNAHDNA-TEUS",
+        "PAPATCH",
+
+                             
+]
+
+
+num=random.randrange(0,9,1)
+
+def res():
+    global words,answers,num
+    num=random.randrange(0,9,1)
+    lb1.config(text=words[num])
+    e1.delete(0,END)
+    
+    
+def default():
+    global words,answers,num
+    lb1.config(text=words[num])
+
+    
+def checkans():
+    global words,answers,num
+    var = e1.get()
+    if var == answers[num]:
+        messagebox.showinfo("Success","This is correct answer")
+        res()
+    else:
+        messagebox.showerror("Wrong","This is not correct")
+        e1.delete(0,END)
+        
+
+root=tkinter.Tk()
+root.geometry("600x400+400+300")
+root.title("Jumbled")
+root.configure(background="#000000")
+
+lb1= Label(
+    root,
+    text="Your Here",
+    font=("Verdana",18),
+    bg="#000000",
+    fg="#ffffff",
+)
+lb1.pack(pady=30,ipady=10,ipadx=10)
+
+
+ans1=StringVar()
+
+e1=Entry(
+    root,
+    font=("Verdana",14),
+    textvariable = ans1,
+)
+e1.pack(ipady=5,ipadx=5)
+
+btncheck= Button(
+        root,
+        text="Check",
+        font=("Comic sans ms",16),
+        width=16,
+        bg="#4C4B4B",
+        fg="#6ab04c",
+        relief=GROOVE,
+        command=checkans,
+)
+btncheck.pack(pady=40)
+
+btnreset= Button(
+        root,
+        text="Reset",
+        font=("Comic sans ms",16),
+        width=16,
+        bg="#4C4B4B",
+        fg="#EA425C",
+        relief=GROOVE,
+        command=res,
+)
+btnreset.pack()
+
+default()
+
+
+root.mainloop()
